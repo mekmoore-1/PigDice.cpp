@@ -1,4 +1,6 @@
 #include <iostream>
+#include <ctime>
+#include <cstdlib>
 
 // Build your solution starting from this code.
 
@@ -11,17 +13,77 @@ struct GameState {
     bool turn_over = false;
 };
 
-void addScore(GameState &gs) {
-    gs.game_score += 10;
+//void addScore(GameState &gs) {
+    //gs.game_score += 10;
 
-}
 
-int main() {
+void play_game(GameState &g);
+void take_turn(GameState &g);
+void roll(GameState &g);
+void hold(GameState &g);
+
+
+    int main() {
     GameState my_game; // instantiate a GameState object
-    addScore (my_game);
+    //addScore (my_game);
     //my_game.game_score;
     std::cout <<"Game score is: " << my_game.game_score << std::endl;
     //display_rules(); // call the display_rules function
-    //play_game(my_game); // call the play_game function and pass the GameState object
+    play_game(my_game); // call the play_game function and pass the GameState object
     return 0;
 }
+
+void play_game(GameState &g) {
+        while (!g.game_over) {
+            take_turn(g);
+            g.game_score +=g.score_this_turn;
+            if (g.game_score >= 20) {
+                g.game_over = true;
+            }
+            else {
+                g.turn_over = false;
+                g.score_this_turn = 0;
+            }
+    }
+        std::cout << "\n\nYou finished with a final score of ";
+        std::cout << g.game_score;
+        std::cout << " in " << g.turn_count << " turns of game.";
+        std::cout << "\nThanks for playing PIG DICE!";
+}
+void take_turn(GameState &g) {
+    g.turn_count++;
+        std::cout << "\nTURN " << g.turn_count;
+        std::cout << "  \nGame Score" <<g.game_score;
+        while (!g.turn_over) {
+            std::cout << "\nroll or hold? (r/h: ";
+            std::cin >> g.choice;
+            if (g.choice == 'r') {
+                roll(g);
+            }
+            else if (g.choice == 'h') {
+                hold(g);
+            }
+            else {
+                std::cout << "Invalid choice!";
+            }
+        }
+        std::cout << "score banked this turn:" << g.score_this_turn;
+    }
+void roll(GameState &g) {
+        srand(time(NULL));
+        int die = rand() % 6 + 1;
+        std::cout << "DIE:" << die;
+        if (die ==1) {
+            std::cout << "\nTurn Over. No Score.\n";
+            g.score_this_turn = 0;
+            g.turn_over = true;
+        }
+        else {
+            g.score_this_turn+=die;
+            std::cout << "Running score this turn:" << g.score_this_turn;
+        }
+    }
+
+void hold(GameState &g) {
+    g.turn_over = false;
+    }
