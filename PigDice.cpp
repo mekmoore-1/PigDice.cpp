@@ -112,48 +112,8 @@ void hold(GameState &g) {
     }*/
 
 #include <iostream>
-#include <random>
+#include "DIE.h"
 
-// Die class
-class Die {
-private:
-    int dieValue;
-    int numOfSides;
-
-public:
-    //  default Constructor
-    Die() {
-        dieValue = 1;
-        numOfSides = 6;
-    }
-    // setter for die value
-    void setDieValue(int value) {
-        dieValue = value;
-    }
-    // getter for die value
-    int getDieValue() {
-        return dieValue;
-    }
-    // setter for sides
-    void setNumOfSides(int Sides) {
-        if (Sides == 4 || Sides == 6 || Sides == 8) {
-            numOfSides = Sides;
-        }
-    }
- // getter for sides
-    int getNumOfSides() {
-        return numOfSides;
-    }
-
-    void roll() {
-        static std::random_device rd;
-        static std::mt19937 gen(rd());
-
-        std::uniform_int_distribution<int> randomNumber(1, numOfSides);
-
-        dieValue = randomNumber(gen);
-    }
-};
 
 
 struct GameState {
@@ -257,7 +217,7 @@ void take_turn(GameState &g, Die &d) {
 
 void roll(GameState &g, Die &d) {
 
-    d.roll();
+    //d.roll();
 
     int die = d.getDieValue();
 
