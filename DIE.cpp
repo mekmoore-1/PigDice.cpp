@@ -4,10 +4,13 @@
    Die::Die() {
        dieValue = 1;
        numOfSides = 6;
+
+       setDieValue();
+
    }
 // setter for die value
 void Die::setDieValue() {
-       dieValue = rand() % 6 + 1;
+       dieValue = rand() % numOfSides + 1;
    }
 // getter for die value
 int Die::getDieValue() {
