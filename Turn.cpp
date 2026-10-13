@@ -2,6 +2,8 @@
 #include "Turn.h"
 #include "PDGame.h" // 8.
 
+struct GameState;
+
 Turn::Turn() {
      m_turnCount = 0;
      m_ScoreThisTurn = 0;
@@ -38,15 +40,15 @@ int Turn::getScoreThisTurn() const {
 void Turn::resetTurnOver() {
      m_turnOver = false;
 }
-int Turn::getTurnCount() {
+int Turn::getTurnCount()  {
      return m_turnCount;
 }
 void Turn::resetScoreThisTurn() {
-     m_ScoreThisTurn = 0;
+     m_ScoreThisTurn=0;
 }
 void Turn::roll() {
      m_myDie.rollDie();
-     std::cout << "DIe: " << m_myDie.getDieValue();
+     std::cout << "DIE: " << m_myDie.getDieValue();
      if (m_myDie.getDieValue()==1) {
           std::cout << "\nTurn over. No score. \n";
           m_ScoreThisTurn = 0;
@@ -54,6 +56,6 @@ void Turn::roll() {
      }
      else {
           m_ScoreThisTurn+=m_myDie.getDieValue();
-          std::cout << " - Running score this turn:" << m_ScoreThisTurn << "\n";
+          std::cout << " - Running score this turn:" << m_ScoreThisTurn;
      }
 }

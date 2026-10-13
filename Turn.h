@@ -5,14 +5,15 @@
 
 class PDGame; //3.
 
-class Turn {
+class Turn
+{
     private:
         int m_turnCount;
         int m_ScoreThisTurn;
         bool m_turnOver;
         char m_choice;
         Die m_myDie;
-        PDGame* m_parentGame = nullptr; //4.
+        PDGame* m_parentGame=nullptr; //4.
     public:
         Turn();
         void setParentGame(PDGame* parentGame); //5.
