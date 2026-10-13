@@ -1,0 +1,19 @@
+#ifndef PIGDICE_CPP_PDGAME_H
+#define PIGDICE_CPP_PDGAME_H
+#include "Turn.h"
+
+class PDGame {
+private:
+    Turn m_myTurn;
+    bool m_gameOver;
+    int m_gameScore;
+public:
+    PDGame();
+    int getGameScore() const; //1.
+private:
+    void displayRules();
+    void playGame();
+};
+
+
+#endif //PIGDICE_CPP_PDGAME_H

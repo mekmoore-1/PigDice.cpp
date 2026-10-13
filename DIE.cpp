@@ -2,27 +2,22 @@
 #include "DIE.h"
 
    Die::Die() {
-       dieValue = 1;
-       numOfSides = 6;
-
-       setDieValue();
-
+       m_dieValue=0;
    }
 // setter for die value
-void Die::setDieValue() {
-       dieValue = rand() % numOfSides + 1;
+void Die::rollDie() {
+      std::random_device rd;
+       std::mt19937 gen(rd());
+       std::uniform_int_distribution<int> dis(1,6);
+       m_dieValue = dis(gen);
    }
 // getter for die value
-int Die::getDieValue() {
-       return dieValue;
+int Die::getDieValue() const {
+
+      // rules for accessing the data
+       return m_dieValue;
    }
-// setter for sides
-void Die::setNumOfSides(int Sides) {
-       if (Sides == 4 || Sides == 6 || Sides == 8) {
-           numOfSides = Sides;
-       }
-   }
-// getter for sides
-int Die::getNumOfSides() {
-       return numOfSides;
-   }
+
+
+
+

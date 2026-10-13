@@ -4,17 +4,16 @@
 
 class Die {
 private:
-    int dieValue;
-    int numOfSides;
+    int m_dieValue;
 
 public:
     Die();
+    void rollDie();
 
-    void setDieValue();
-    int getDieValue();
+    int getDieValue() const;
 
-    void setNumOfSides(int Sides);
-    int getNumOfSides();
+
+
 };
 
 #endif
